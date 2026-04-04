@@ -1,0 +1,49 @@
+
+#include <stdio.h>
+int lowerBound(int arr[],int n,int key){
+    
+    int low=0,high=n-1,ans=n;
+    while(low<=high){
+        int mid=(high+low)/2;
+        
+        if(arr[mid]>=key){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    return ans;
+}
+int upperBound( int arr[],int n,int key){
+     int low=0,high=n-1,ans=n;
+     
+    while(low<=high){
+        int mid=(high+low)/2;
+    
+        if(arr[mid]>key){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    return ans;
+}
+
+int main(){
+    int arr[]={1,2,2,2,3};
+    int n=5,key=2;
+    
+    int lb=lowerBound(arr,n,key);
+    int ub=upperBound(arr,n,key);
+    
+    printf("lb is%d\n",lb);
+     printf("ub is%d\n",ub);
+    int count=ub-lb;
+    printf("count is %d",count);
+
+return 0;
+}
